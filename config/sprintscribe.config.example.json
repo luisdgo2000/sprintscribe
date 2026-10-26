@@ -1,0 +1,55 @@
+{
+  "config_version": "1.0",
+  "language": "es",
+  "docs_root": "./documentacion",
+  "inbox_dir": "_inbox",
+  "po": {
+    "name": "Brian",
+    "aliases": ["Brayan", "Bryan", "PO"]
+  },
+  "roster": [
+    {"name": "Brian", "aliases": ["Brayan", "Bryan"], "role": "Product Owner", "upn": null},
+    {"name": "Ana", "aliases": [], "role": "Desarrollo", "upn": null},
+    {"name": "Carlos", "aliases": [], "role": "Desarrollo", "upn": null}
+  ],
+  "projects": [
+    {
+      "id": "proyecto-ejemplo",
+      "key": "PEJ",
+      "name": "Proyecto Ejemplo",
+      "aliases": ["el ejemplo"],
+      "description": "Reemplazar por los proyectos reales del equipo.",
+      "area_path": null,
+      "docs": []
+    }
+  ],
+  "effort_convention": {
+    "mode": "ranges",
+    "native_field": null,
+    "notes": "Sin convencion oficial: SprintScribe infiere rangos temporales y no asigna Story Points."
+  },
+  "boards": {
+    "mode": "draft",
+    "channel": "none",
+    "org": null,
+    "project": null,
+    "team": null,
+    "process": null,
+    "work_item_types": {},
+    "state_mapping": {
+      "cancelled": null,
+      "deferred": null,
+      "blocked": null,
+      "completed": null
+    },
+    "dedup": {
+      "same_threshold": 0.9,
+      "review_threshold": 0.72,
+      "margin": 0.05
+    },
+    "auto_apply": []
+  },
+  "uploader": {
+    "status": "pending"
+  }
+}

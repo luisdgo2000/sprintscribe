@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-14-planning-portal",
+    "date": "2026-10-14",
+    "type": "planning",
+    "sprint": null,
+    "title": "Planning Portal de Clientes",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "portal-clientes",
+      "key": "PCL",
+      "name": "Portal de Clientes",
+      "aliases": [
+        "el portal"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que los integradores usen la API pública del portal sin errores, mediante la actualización de su documentación, con el fin de reducir sus reclamos.",
+        "certainty": "inferred",
+        "expected_result": "Documentación de la API alineada con los endpoints vigentes.",
+        "business_need": "Los integradores reportan ejemplos que no funcionan.",
+        "deliverables": [
+          "Documentación de la API actualizada"
+        ],
+        "owners": [],
+        "participants": [
+          "Brian",
+          "Ana",
+          "Carlos"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Asignar responsable",
+          "purpose": "Desbloquear la tarea",
+          "kind": "recommended",
+          "owner": "Brian",
+          "task_refs": [],
+          "depends_on": [],
+          "duration": {
+            "range": "1 d",
+            "basis": "Brian dijo que se definiría después.",
+            "confidence": "high"
+          },
+          "risks": [
+            "Carlos no tiene capacidad"
+          ]
+        },
+        {
+          "order": 2,
+          "step": "Actualizar la documentación",
+          "purpose": "Corregir endpoints y ejemplos",
+          "kind": "agreed",
+          "owner": null,
+          "task_refs": [
+            "PCL-T1"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Dos endpoints cambiados más revisión de ejemplos.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PCL-T1",
+      "project_id": "portal-clientes",
+      "title": "Actualizar la documentación de la API pública con los endpoints vigentes",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": null,
+      "owner_certainty": "pending",
+      "description": "Los integradores reportan que los ejemplos de la documentación de la API pública del portal ya no funcionan; según Ana, cambiaron dos endpoints desde la última versión. Se actualiza la documentación y sus ejemplos. Responsable por definir: Carlos indicó que no tiene capacidad.",
+      "acceptance_criterion": "Todos los ejemplos de la documentación de la API pública se ejecutan con éxito contra la versión vigente del portal.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Dos endpoints conocidos; la revisión de ejemplos puede revelar más diferencias."
+      },
+      "evidence": [
+        {
+          "quote": "Eso hay que actualizarlo este sprint sí o sí. Veamos después quién lo toma.",
+          "speaker": "Brian",
+          "timestamp": "00:40"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "portal-clientes",
+      "kind": "decision",
+      "text": "La documentación de la API se actualiza en este sprint.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T1"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "Eso hay que actualizarlo este sprint sí o sí.",
+          "speaker": "Brian",
+          "timestamp": "00:40"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [
+    {
+      "id": "Q1",
+      "project_id": "portal-clientes",
+      "question": "¿Quién será responsable de actualizar la documentación de la API?",
+      "blocks": [
+        "PCL-T1"
+      ],
+      "ask": "Brian"
+    }
+  ],
+  "reconciliation_log": []
+}

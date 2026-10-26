@@ -1,0 +1,30 @@
+{
+  "config_version": "1.0",
+  "language": "es",
+  "docs_root": "./out",
+  "po": {"name": "Brian", "aliases": ["Brayan", "Bryan"]},
+  "roster": [
+    {"name": "Brian", "aliases": ["Brayan", "Bryan"], "role": "Product Owner", "upn": "brian@empresa.com"},
+    {"name": "Ana", "role": "Desarrollo", "upn": "ana@empresa.com"},
+    {"name": "Carlos", "role": "Desarrollo", "upn": "carlos@empresa.com"},
+    {"name": "María", "aliases": ["Maria"], "role": "QA", "upn": "maria@empresa.com"},
+    {"name": "Jorge", "role": "Ingeniería de datos", "upn": "jorge@empresa.com"},
+    {"name": "Sofía", "aliases": ["Sofi", "Sofia"], "role": "Ingeniería de datos", "upn": "sofia@empresa.com"}
+  ],
+  "projects": [
+    {"id": "portal-clientes", "key": "PCL", "name": "Portal de Clientes", "aliases": ["el portal"]},
+    {"id": "datalake-ventas", "key": "DLV", "name": "Data Lake de Ventas", "aliases": ["el lake de ventas", "data leik"]},
+    {"id": "facturacion-electronica", "key": "FEL", "name": "Facturación Electrónica", "aliases": ["facturación", "FE"]}
+  ],
+  "effort_convention": {"mode": "ranges", "native_field": null},
+  "boards": {
+    "mode": "draft",
+    "channel": "none",
+    "process": null,
+    "work_item_types": {"task": "Task"},
+    "state_mapping": {"cancelled": "Removed", "completed": "Done", "deferred": null, "blocked": null},
+    "dedup": {"same_threshold": 0.9, "review_threshold": 0.72, "margin": 0.05},
+    "auto_apply": []
+  },
+  "uploader": {"status": "pending"}
+}

@@ -1,0 +1,13 @@
+{
+  "description": "Sin integración: Draft, operaciones pendientes, nada reportado como sincronizado.",
+  "ops": [
+    {
+      "op": "create",
+      "status": "pending",
+      "task_match": [
+        "canceladas"
+      ]
+    }
+  ],
+  "no_applied_ops": true
+}

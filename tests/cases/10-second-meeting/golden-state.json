@@ -1,0 +1,238 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-08-seguimiento-lake",
+    "date": "2026-10-08",
+    "type": "follow_up",
+    "sprint": "Sprint 21",
+    "title": "Seguimiento Data Lake de Ventas",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      }
+    ],
+    "previous_meetings": [
+      "2026-10-01-planning-lake"
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que Finanzas valide los datos de ventas modelados, mediante el diccionario de datos del modelo de plata, con el fin de definir los indicadores del dashboard del próximo sprint.",
+        "certainty": "inferred",
+        "expected_result": "Diccionario de datos revisado por Finanzas.",
+        "business_need": "Finanzas aún no define los indicadores del dashboard.",
+        "deliverables": [
+          "Diccionario de datos del modelo de plata"
+        ],
+        "owners": [
+          "Sofía"
+        ],
+        "participants": [
+          "Brian",
+          "Sofía"
+        ],
+        "scope": [],
+        "exclusions": [
+          "Dashboard de ventas (diferido al siguiente sprint)"
+        ]
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Documentar el diccionario de datos",
+          "purpose": "Que Finanzas entienda el modelo",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T4"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "El modelo ya está aprobado.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Revisión de Finanzas e indicadores",
+          "purpose": "Habilitar el dashboard del próximo sprint",
+          "kind": "recommended",
+          "owner": "Brian",
+          "task_refs": [],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "1 semana",
+            "basis": "Depende de la disponibilidad de Finanzas.",
+            "confidence": "low"
+          },
+          "risks": [
+            "Finanzas no ha definido indicadores"
+          ]
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Diseñar el modelo de plata de ventas",
+      "status": "completed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "Sofía diseñó el modelo de plata; Jorge lo aprobó.",
+      "acceptance_criterion": "El modelo de plata está documentado y aprobado por Jorge.",
+      "evidence": [
+        {
+          "quote": "El modelo de plata ya quedó, Jorge lo aprobó ayer.",
+          "speaker": "Sofía",
+          "timestamp": "00:10"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T3",
+      "project_id": "datalake-ventas",
+      "title": "Construir el dashboard de ventas para Finanzas",
+      "status": "deferred",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Jorge construye el dashboard de ventas para Finanzas. Se difiere al siguiente sprint porque Finanzas aún no define los indicadores.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "El dashboard ya no va en este sprint, lo pasamos al siguiente",
+          "speaker": "Brian",
+          "timestamp": "00:25"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T4",
+      "project_id": "datalake-ventas",
+      "title": "Documentar el diccionario de datos del modelo de plata de ventas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "Mientras Finanzas define los indicadores del dashboard, Sofía documenta el diccionario de datos del modelo de plata de ventas (tablas, columnas, definiciones y reglas) para que Finanzas lo revise.",
+      "acceptance_criterion": "El diccionario de datos describe todas las tablas y columnas del modelo de plata y está compartido con Finanzas para su revisión.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "El modelo ya existe y está aprobado."
+      },
+      "evidence": [
+        {
+          "quote": "Sofía, necesito que documentes el diccionario de datos del modelo de plata",
+          "speaker": "Brian",
+          "timestamp": "00:50"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "datalake-ventas",
+      "kind": "change",
+      "text": "El dashboard de ventas se difiere al siguiente sprint.",
+      "decided_by": "Brian",
+      "executed_by": "Jorge",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "DLV-T3"
+      ],
+      "context": "Finanzas no ha definido los indicadores.",
+      "evidence": [
+        {
+          "quote": "lo pasamos al siguiente",
+          "speaker": "Brian",
+          "timestamp": "00:25"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "project_id": "datalake-ventas",
+      "kind": "external_action",
+      "text": "Finanzas debe definir los indicadores del dashboard y revisar el diccionario.",
+      "decided_by": null,
+      "executed_by": "Finanzas",
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "DLV-T3",
+        "DLV-T4"
+      ],
+      "context": null,
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": [
+    {
+      "id": "R1",
+      "action": "completed",
+      "task_ref": "DLV-T2",
+      "from": "confirmed",
+      "to": "completed",
+      "reason": "Sofía informó que el modelo quedó y Jorge lo aprobó.",
+      "cause_decision": null
+    },
+    {
+      "id": "R2",
+      "action": "deferred",
+      "task_ref": "DLV-T3",
+      "from": "confirmed",
+      "to": "deferred",
+      "reason": "Finanzas todavía no define los indicadores.",
+      "cause_decision": "D1"
+    },
+    {
+      "id": "R3",
+      "action": "added",
+      "task_ref": "DLV-T4",
+      "from": null,
+      "to": "confirmed",
+      "reason": "Nueva tarea para avanzar mientras se definen los indicadores.",
+      "cause_decision": null
+    }
+  ]
+}

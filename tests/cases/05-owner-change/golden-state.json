@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-10-seguimiento-fe",
+    "date": "2026-10-10",
+    "type": "follow_up",
+    "sprint": null,
+    "title": "Seguimiento Facturación Electrónica",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "María",
+        "role": "QA",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Jorge",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "facturacion-electronica",
+      "key": "FEL",
+      "name": "Facturación Electrónica",
+      "aliases": [
+        "facturación",
+        "FE"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Asegurar que el timbrado de facturas funcione con el proveedor, mediante pruebas en el ambiente de pruebas, con el fin de liberar sin rechazos.",
+        "certainty": "inferred",
+        "expected_result": "Timbrado probado con el proveedor.",
+        "business_need": "Validar la integración con el proveedor de timbrado antes de liberar.",
+        "deliverables": [
+          "Pruebas de timbrado"
+        ],
+        "owners": [
+          "Jorge"
+        ],
+        "participants": [
+          "Brian",
+          "María",
+          "Jorge"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Traspaso de casos de prueba",
+          "purpose": "Que Jorge continúe sin perder lo avanzado",
+          "kind": "agreed",
+          "owner": "María",
+          "task_refs": [
+            "FEL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1 d",
+            "basis": "Sesión de traspaso antes de las vacaciones.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Ejecutar pruebas de timbrado",
+          "purpose": "Confirmar la integración",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "FEL-T1"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "2-4 d",
+            "basis": "Depende de la disponibilidad del ambiente del proveedor.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "FEL-T1",
+      "project_id": "facturacion-electronica",
+      "title": "Ejecutar pruebas de timbrado con el proveedor en ambiente de pruebas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Antes de liberar se debe probar el timbrado de facturas con el proveedor en su ambiente de pruebas. María inició la preparación de casos; por sus vacaciones, la tarea pasa a Jorge, que recibe de María los casos ya preparados.",
+      "acceptance_criterion": "Los casos de timbrado definidos se ejecutan contra el ambiente de pruebas del proveedor y cada uno tiene resultado registrado.",
+      "effort": {
+        "range": "2-3 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Incluye traspaso de casos y dependencia del ambiente del proveedor."
+      },
+      "evidence": [
+        {
+          "quote": "María, tú te encargas de las pruebas de timbrado",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        },
+        {
+          "quote": "las pruebas de timbrado que las tome Jorge",
+          "speaker": "Brian",
+          "timestamp": "04:45"
+        }
+      ],
+      "history": [
+        {
+          "change": "Responsable: María -> Jorge",
+          "reason": "Vacaciones de María"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "facturacion-electronica",
+      "kind": "responsibility",
+      "text": "Jorge asume las pruebas de timbrado en lugar de María.",
+      "decided_by": "Brian",
+      "executed_by": "Jorge",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "context": "María sale de vacaciones.",
+      "evidence": [
+        {
+          "quote": "que las tome Jorge",
+          "speaker": "Brian",
+          "timestamp": "04:45"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "project_id": "facturacion-electronica",
+      "kind": "commitment",
+      "text": "María entrega a Jorge los casos de prueba ya preparados.",
+      "decided_by": "Brian",
+      "executed_by": "María",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "María, pásale los casos que ya tengas.",
+          "speaker": "Brian",
+          "timestamp": "04:45"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": [
+    {
+      "id": "R1",
+      "action": "reassigned",
+      "task_ref": "FEL-T1",
+      "from": "María",
+      "to": "Jorge",
+      "reason": "María sale de vacaciones; Brian reasignó la tarea a Jorge.",
+      "cause_decision": "D1"
+    }
+  ]
+}

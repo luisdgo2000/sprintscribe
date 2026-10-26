@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-15-lake-transcripcion-automatica",
+    "date": "2026-10-15",
+    "type": "other",
+    "sprint": null,
+    "title": "Reunión con transcripción automática",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "medium",
+        "speaker_labels": [
+          "Hablante 1"
+        ]
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "medium",
+        "speaker_labels": [
+          "Hablante 2"
+        ]
+      },
+      {
+        "name": "Hablante 3",
+        "role": null,
+        "identity_confidence": "low",
+        "speaker_labels": [
+          "Hablante 3"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Alias reconocido con error de transcripción ('data leik' = Data Lake de Ventas)",
+      "sprint_objective": {
+        "statement": "Lograr una tabla de clientes sin duplicados en el Data Lake de Ventas, mediante la deduplicación por número de documento, con el fin de que los análisis por cliente sean correctos.",
+        "certainty": "inferred",
+        "expected_result": "Un registro por cliente en la tabla de clientes.",
+        "business_need": "Hay clientes repetidos en la tabla de clientes.",
+        "deliverables": [
+          "Tabla de clientes deduplicada"
+        ],
+        "owners": [
+          "Sofía"
+        ],
+        "participants": [
+          "Brian",
+          "Sofía"
+        ],
+        "scope": [
+          "Tabla de clientes"
+        ],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Deduplicar clientes",
+          "purpose": "Corregir la tabla de clientes",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-3 d",
+            "basis": "Regla clara por documento; puede haber casos sin documento.",
+            "confidence": "low"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Aclarar 'lo otro'",
+          "purpose": "Identificar el trabajo y su responsable",
+          "kind": "recommended",
+          "owner": "Brian",
+          "task_refs": [
+            "DLV-T2"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1 d",
+            "basis": "Requiere una consulta breve al PO.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T1",
+      "project_id": "datalake-ventas",
+      "title": "Deduplicar la tabla de clientes por número de documento",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Sofía",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "inferred",
+      "description": "La tabla de clientes del Data Lake de Ventas tiene clientes repetidos. Sofía (identificada como Hablante 2 por el apodo 'Sofi' con que la llamó el PO) se ofreció a deduplicar usando el número de documento. La transcripción automática escribió 'data leik' por 'Data Lake'.",
+      "acceptance_criterion": "La tabla de clientes no contiene dos registros con el mismo número de documento.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "low",
+        "rationale": "La regla es clara, pero no se conoce cuántos clientes carecen de documento."
+      },
+      "evidence": [
+        {
+          "quote": "Puedo deduplicar por el número de documento, yo lo agarro.",
+          "speaker": "Hablante 2",
+          "timestamp": "00:20"
+        },
+        {
+          "quote": "Dale Sofi, gracias.",
+          "speaker": "Hablante 1",
+          "timestamp": "00:35"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Aclarar el trabajo referido como 'lo otro' y su responsable",
+      "status": "needs_clarification",
+      "certainty": "pending",
+      "work_item_type": "task",
+      "proposed_by": null,
+      "decided_by": null,
+      "owner": null,
+      "owner_certainty": "pending",
+      "description": "Hablante 3 preguntó por 'lo otro' y el PO respondió que lo vea 'la persona que lo lleva'. La transcripción no permite identificar ni el trabajo ni la persona.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "Lo otro que lo vea la persona que lo lleva, eh, ya saben.",
+          "speaker": "Hablante 1",
+          "timestamp": "00:55"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "datalake-ventas",
+      "kind": "responsibility",
+      "text": "Sofía deduplica la tabla de clientes.",
+      "decided_by": "Brian",
+      "executed_by": "Sofía",
+      "status": "confirmed",
+      "certainty": "inferred",
+      "task_refs": [
+        "DLV-T1"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "Dale Sofi, gracias.",
+          "speaker": "Hablante 1",
+          "timestamp": "00:35"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [
+    {
+      "id": "Q1",
+      "project_id": "datalake-ventas",
+      "question": "¿Qué trabajo es 'lo otro' y quién es 'la persona que lo lleva'? ¿Quién es Hablante 3?",
+      "blocks": [
+        "DLV-T2"
+      ],
+      "ask": "Brian"
+    }
+  ],
+  "reconciliation_log": []
+}

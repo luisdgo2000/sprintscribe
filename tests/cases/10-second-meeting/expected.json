@@ -1,0 +1,67 @@
+{
+  "description": "La segunda reunión cambia estados de la primera sin perder la tarea no mencionada.",
+  "tasks": [
+    {
+      "match": [
+        "dashboard"
+      ],
+      "status_in": [
+        "deferred"
+      ]
+    },
+    {
+      "match": [
+        "modelo de plata"
+      ],
+      "status_in": [
+        "completed"
+      ]
+    },
+    {
+      "match": [
+        "diccionario"
+      ],
+      "owner": "Sofía",
+      "status_in": [
+        "confirmed"
+      ]
+    }
+  ],
+  "forbidden": [
+    {
+      "match": [
+        "construir",
+        "dashboard"
+      ],
+      "status_in": [
+        "confirmed",
+        "modified"
+      ]
+    }
+  ],
+  "reconciliation": [
+    {
+      "action": "deferred",
+      "task_match": [
+        "dashboard"
+      ]
+    },
+    {
+      "action": "completed"
+    }
+  ],
+  "ledger_after_merge": {
+    "DLV-T1": {
+      "status": "confirmed"
+    },
+    "DLV-T2": {
+      "status": "completed"
+    },
+    "DLV-T3": {
+      "status": "deferred"
+    },
+    "DLV-T4": {
+      "status": "confirmed"
+    }
+  }
+}

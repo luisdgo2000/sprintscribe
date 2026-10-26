@@ -1,0 +1,26 @@
+{
+  "description": "La responsabilidad cambia de persona y se registra.",
+  "tasks": [
+    {
+      "match": [
+        "timbrado"
+      ],
+      "owner": "Jorge",
+      "status_in": [
+        "confirmed"
+      ]
+    }
+  ],
+  "reconciliation": [
+    {
+      "action": "reassigned",
+      "task_match": [
+        "timbrado"
+      ]
+    }
+  ],
+  "ready_count": {
+    "min": 1,
+    "max": 1
+  }
+}

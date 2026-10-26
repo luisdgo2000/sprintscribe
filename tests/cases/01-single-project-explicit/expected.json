@@ -1,0 +1,42 @@
+{
+  "description": "Un solo proyecto con tres tareas explícitas y responsables claros.",
+  "projects": [
+    "portal-clientes"
+  ],
+  "ready_count": {
+    "min": 3,
+    "max": 3
+  },
+  "tasks": [
+    {
+      "match": [
+        "endpoint",
+        "pdf"
+      ],
+      "owner": "Ana",
+      "status_in": [
+        "confirmed"
+      ],
+      "project": "portal-clientes"
+    },
+    {
+      "match": [
+        "boton",
+        "historial"
+      ],
+      "owner": "Carlos",
+      "status_in": [
+        "confirmed"
+      ]
+    },
+    {
+      "match": [
+        "qa"
+      ],
+      "owner": "María",
+      "status_in": [
+        "confirmed"
+      ]
+    }
+  ]
+}

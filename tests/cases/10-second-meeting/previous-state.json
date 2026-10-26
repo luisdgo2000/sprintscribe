@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-01-planning-lake",
+    "date": "2026-10-01",
+    "type": "planning",
+    "sprint": "Sprint 21",
+    "title": "Planning Data Lake de Ventas",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Jorge",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que Finanzas consulte ventas confiables en un tablero, mediante la ingesta, el modelo de plata y el dashboard de ventas, con el fin de dejar el reporte manual.",
+        "certainty": "inferred",
+        "expected_result": "Tablero de ventas sobre datos modelados.",
+        "business_need": "Finanzas arma el reporte manualmente.",
+        "deliverables": [
+          "Ingesta",
+          "Modelo de plata",
+          "Dashboard de ventas"
+        ],
+        "owners": [
+          "Jorge",
+          "Sofía"
+        ],
+        "participants": [
+          "Brian",
+          "Jorge",
+          "Sofía"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Ingesta",
+          "purpose": "Datos crudos",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "DLV-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Conector existente.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Modelo de plata",
+          "purpose": "Datos estructurados",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T2"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "3-5 d",
+            "basis": "Diseño y revisión.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 3,
+          "step": "Dashboard",
+          "purpose": "Consumo de Finanzas",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "DLV-T3"
+          ],
+          "depends_on": [
+            2
+          ],
+          "duration": {
+            "range": "1 semana",
+            "basis": "Depende del modelo.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T1",
+      "project_id": "datalake-ventas",
+      "title": "Implementar ingesta diaria de ventas a bronce",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Finanzas arma el reporte de ventas a mano. Jorge implementa la ingesta diaria de ventas a la capa bronce usando el conector existente de inventario.",
+      "acceptance_criterion": "Las ventas del día anterior quedan cargadas en bronce cada día sin intervención manual.",
+      "effort": {
+        "range": "2-3 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Conector existente."
+      },
+      "evidence": [
+        {
+          "quote": "Jorge, la ingesta diaria",
+          "speaker": "Brian"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Diseñar el modelo de plata de ventas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "Sofía diseña el modelo de la capa plata de ventas con las dimensiones tienda, producto y fecha, coherente con la ingesta a bronce.",
+      "acceptance_criterion": "El modelo de plata está documentado y aprobado por Jorge.",
+      "effort": {
+        "range": "2-4 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Diseño con revisión."
+      },
+      "evidence": [
+        {
+          "quote": "Sofía, el modelo de plata",
+          "speaker": "Brian"
+        }
+      ],
+      "depends_on": [
+        "DLV-T1"
+      ]
+    },
+    {
+      "id": "DLV-T3",
+      "project_id": "datalake-ventas",
+      "title": "Construir el dashboard de ventas para Finanzas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Jorge construye el dashboard de ventas que usará Finanzas, sobre el modelo de plata, para reemplazar el reporte manual.",
+      "acceptance_criterion": "Finanzas consulta en el dashboard las ventas por tienda y fecha con los mismos totales que el reporte manual.",
+      "effort": {
+        "range": "3-5 d",
+        "level": "medium",
+        "confidence": "low",
+        "rationale": "Requisitos visuales no definidos."
+      },
+      "evidence": [
+        {
+          "quote": "Jorge, después el dashboard",
+          "speaker": "Brian"
+        }
+      ],
+      "depends_on": [
+        "DLV-T2"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "datalake-ventas",
+      "kind": "decision",
+      "text": "El sprint 21 cubre ingesta, modelo y dashboard.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "DLV-T1",
+        "DLV-T2",
+        "DLV-T3"
+      ],
+      "context": null,
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": []
+}

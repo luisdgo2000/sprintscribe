@@ -1,0 +1,40 @@
+{
+  "description": "La corrección tardía prevalece sobre la instrucción inicial.",
+  "ready_count": {
+    "min": 2,
+    "max": 2
+  },
+  "tasks": [
+    {
+      "match": [
+        "ingesta",
+        "hora"
+      ],
+      "status_in": [
+        "modified",
+        "confirmed"
+      ],
+      "owner": "Jorge"
+    }
+  ],
+  "forbidden": [
+    {
+      "match": [
+        "ingesta diaria"
+      ],
+      "status_in": [
+        "confirmed",
+        "modified",
+        "blocked"
+      ]
+    }
+  ],
+  "reconciliation": [
+    {
+      "action": "modified",
+      "task_match": [
+        "ingesta"
+      ]
+    }
+  ]
+}

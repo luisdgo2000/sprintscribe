@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-16-seguimiento-portal",
+    "date": "2026-10-16",
+    "type": "follow_up",
+    "sprint": null,
+    "title": "Seguimiento Portal de Clientes",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "portal-clientes",
+      "key": "PCL",
+      "name": "Portal de Clientes",
+      "aliases": [
+        "el portal"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr un inicio de sesión del portal seguro y observable, mediante captcha, recuperación de contraseña y métricas de errores, con el fin de frenar intentos de fuerza bruta y detectar fallas.",
+        "certainty": "inferred",
+        "expected_result": "Login protegido con captcha, recuperación disponible y errores visibles en monitoreo.",
+        "business_need": "Hubo intentos de fuerza bruta en el login.",
+        "deliverables": [
+          "Captcha en inicio de sesión",
+          "Recuperación de contraseña",
+          "Métricas de errores del login"
+        ],
+        "owners": [
+          "Ana",
+          "Carlos"
+        ],
+        "participants": [
+          "Brian",
+          "Ana",
+          "Carlos"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Captcha en el login",
+          "purpose": "Frenar la fuerza bruta",
+          "kind": "agreed",
+          "owner": "Carlos",
+          "task_refs": [
+            "PCL-T5"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Integración de un componente estándar.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Terminar la recuperación de contraseña",
+          "purpose": "Cerrar el trabajo en curso",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "PCL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Ya en curso.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 3,
+          "step": "Métricas de errores del login",
+          "purpose": "Detectar fallas",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "PCL-T6"
+          ],
+          "depends_on": [
+            2
+          ],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Ana la hará después.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PCL-T1",
+      "project_id": "portal-clientes",
+      "title": "Implementar recuperación de contraseña por correo",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Los clientes necesitan recuperar el acceso al portal mediante un enlace enviado al correo. El trabajo ya existe en Azure Boards como work item 4512 y Ana continúa con él.",
+      "acceptance_criterion": "Un cliente que solicita recuperar su contraseña recibe un enlace por correo y con él define una nueva contraseña que le permite iniciar sesión.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Trabajo ya en curso."
+      },
+      "evidence": [
+        {
+          "quote": "La recuperación de contraseña ya está en Boards, la 4512. Ana sigue con eso.",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        }
+      ],
+      "boards": {
+        "work_item_id": 4512,
+        "state": "Active",
+        "match_confidence": "verified"
+      }
+    },
+    {
+      "id": "PCL-T2",
+      "project_id": "portal-clientes",
+      "title": "Migrar el formulario de registro a la nueva librería de componentes",
+      "status": "cancelled",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "La migración del formulario de registro se canceló en una reunión anterior y Brian lo ratificó.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "Lo de migrar el formulario de registro ya no va, como dijimos.",
+          "speaker": "Brian",
+          "timestamp": "01:00"
+        }
+      ]
+    },
+    {
+      "id": "PCL-T5",
+      "project_id": "portal-clientes",
+      "title": "Agregar captcha al formulario de inicio de sesión del portal",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "Hubo intentos de fuerza bruta contra el inicio de sesión del portal. Carlos agrega un captcha al formulario de inicio de sesión para frenarlos.",
+      "acceptance_criterion": "El formulario de inicio de sesión exige resolver el captcha antes de validar las credenciales.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Componente estándar."
+      },
+      "evidence": [
+        {
+          "quote": "Carlos, agrega el captcha al formulario de inicio de sesión",
+          "speaker": "Brian",
+          "timestamp": "00:20"
+        }
+      ]
+    },
+    {
+      "id": "PCL-T6",
+      "project_id": "portal-clientes",
+      "title": "Registrar métricas de errores del login en el tablero de monitoreo",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Para detectar fallas en el inicio de sesión, Ana registra las métricas de errores del login en el tablero de monitoreo existente, después de terminar la recuperación de contraseña.",
+      "acceptance_criterion": "El tablero de monitoreo muestra la cantidad de errores de inicio de sesión por hora.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Instrumentación acotada."
+      },
+      "evidence": [
+        {
+          "quote": "Ana, después registra las métricas de errores del login en el tablero de monitoreo.",
+          "speaker": "Brian",
+          "timestamp": "01:20"
+        }
+      ],
+      "depends_on": [
+        "PCL-T1"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "portal-clientes",
+      "kind": "decision",
+      "text": "Se agrega captcha al inicio de sesión por intentos de fuerza bruta.",
+      "decided_by": "Brian",
+      "executed_by": "Carlos",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T5"
+      ],
+      "context": null,
+      "evidence": []
+    },
+    {
+      "id": "D2",
+      "project_id": "portal-clientes",
+      "kind": "change",
+      "text": "Se ratifica la cancelación de la migración del formulario de registro.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T2"
+      ],
+      "context": null,
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": [
+    {
+      "id": "R1",
+      "action": "cancelled",
+      "task_ref": "PCL-T2",
+      "from": "confirmed",
+      "to": "cancelled",
+      "reason": "Brian ratificó que la migración ya no va.",
+      "cause_decision": "D2"
+    }
+  ]
+}

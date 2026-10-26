@@ -1,0 +1,22 @@
+{
+  "description": "Dos 'validar' con objetivos distintos generan dos tareas distintas.",
+  "ready_count": {
+    "min": 2,
+    "max": 2
+  },
+  "tasks": [
+    {
+      "match": [
+        "calidad|reglas",
+        "plata"
+      ],
+      "owner": "Sofía"
+    },
+    {
+      "match": [
+        "gerente comercial|negocio"
+      ],
+      "owner": "Jorge"
+    }
+  ]
+}

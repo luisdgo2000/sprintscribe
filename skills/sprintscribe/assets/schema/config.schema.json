@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sprintscribe.local/schema/config.schema.json",
+  "title": "SprintScribe configuration",
+  "description": "Configuracion por equipo. Nunca contiene credenciales: los tokens viven en variables de entorno.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "config_version": {"type": "string", "enum": ["1.0"]},
+    "language": {"type": "string"},
+    "docs_root": {"type": "string", "description": "Raiz de la documentacion. Relativa al archivo de configuracion o absoluta. Admite ~."},
+    "inbox_dir": {"type": "string", "description": "Donde el agente escribe el meeting-state.json de trabajo. Relativa a docs_root."},
+    "po": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "aliases": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "roster": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "role": {"type": ["string", "null"]},
+          "upn": {"type": ["string", "null"]},
+          "team": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "key", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+          "key": {"type": "string", "pattern": "^[A-Z][A-Z0-9]{1,9}$"},
+          "name": {"type": "string"},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "description": {"type": ["string", "null"]},
+          "area_path": {"type": ["string", "null"]},
+          "docs": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "effort_convention": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {"type": "string", "enum": ["ranges", "hours", "story_points"], "description": "ranges = rango temporal inferido (por defecto). story_points solo si el equipo tiene esa convencion documentada."},
+        "native_field": {"type": ["string", "null"], "description": "Reference name del campo de esfuerzo de Boards, solo si su significado esta identificado."},
+        "scale": {"type": "array", "items": {"type": ["number", "string"]}},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "boards": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {"type": "string", "enum": ["draft", "sync"]},
+        "channel": {"type": "string", "enum": ["none", "mcp", "uploader"], "description": "Canal de escritura autorizado cuando mode = sync."},
+        "org": {"type": ["string", "null"]},
+        "project": {"type": ["string", "null"]},
+        "team": {"type": ["string", "null"]},
+        "process": {"type": ["string", "null"], "description": "Nombre del proceso (Agile, Scrum, heredado...). null = se descubre por metadata."},
+        "work_item_types": {
+          "type": "object",
+          "description": "Tipo logico -> tipo real de Boards. Ej.: {\"task\": \"Task\", \"story\": \"User Story\"}.",
+          "additionalProperties": {"type": "string"}
+        },
+        "state_mapping": {
+          "type": "object",
+          "description": "Estado logico de SprintScribe -> estado real del flujo. Si falta un estado, la operacion queda en revision.",
+          "additionalProperties": {"type": ["string", "null"]}
+        },
+        "dedup": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "same_threshold": {"type": "number"},
+            "review_threshold": {"type": "number"},
+            "margin": {"type": "number"}
+          }
+        },
+        "auto_apply": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["create", "update", "change_state", "link"]},
+          "description": "Operaciones inequivocas que el agente puede aplicar en sync sin pedir confirmacion por cada una."
+        }
+      }
+    },
+    "uploader": {
+      "type": "object",
+      "description": "Integracion con el programa Python + Excel del equipo. status = pending hasta que se configure con la version real.",
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["pending", "configured", "disabled"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-17-planning-fe",
+    "date": "2026-10-17",
+    "type": "planning",
+    "sprint": null,
+    "title": "Planning Facturación Electrónica",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "facturacion-electronica",
+      "key": "FEL",
+      "name": "Facturación Electrónica",
+      "aliases": [
+        "facturación",
+        "FE"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que contabilidad reciba mensualmente las facturas canceladas, mediante un reporte con folio, fecha y motivo, con el fin de conciliar sus registros.",
+        "certainty": "inferred",
+        "expected_result": "Reporte mensual de cancelaciones disponible para contabilidad.",
+        "business_need": "Contabilidad necesita conciliar las cancelaciones.",
+        "deliverables": [
+          "Reporte mensual de facturas canceladas"
+        ],
+        "owners": [
+          "Ana"
+        ],
+        "participants": [
+          "Brian",
+          "Ana"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Reporte de cancelaciones",
+          "purpose": "Entregar el dato a contabilidad",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "FEL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Consulta sobre la base existente más formato.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "FEL-T1",
+      "project_id": "facturacion-electronica",
+      "title": "Generar reporte mensual de facturas canceladas para contabilidad",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Contabilidad necesita conciliar las facturas canceladas. Ana genera un reporte mensual a partir de la base de facturación con el folio, la fecha y el motivo de cancelación de cada factura.",
+      "acceptance_criterion": "El reporte de un mes lista todas las facturas canceladas de ese mes con folio, fecha y motivo, y su total coincide con la base de facturación.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Consulta sobre una base conocida."
+      },
+      "evidence": [
+        {
+          "quote": "Ana, necesito el reporte mensual de facturas canceladas para contabilidad",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "facturacion-electronica",
+      "kind": "decision",
+      "text": "Brian pide registrar la tarea en Boards hoy.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "context": "Sin integración configurada: queda en el plan de operaciones pendiente.",
+      "evidence": [
+        {
+          "quote": "Y que esto quede hoy mismo en Boards.",
+          "speaker": "Brian",
+          "timestamp": "00:45"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": []
+}

@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-07-planning-conjunto",
+    "date": "2026-10-07",
+    "type": "planning",
+    "sprint": null,
+    "title": "Planning conjunto",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Jorge",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que Finanzas cuente con las ventas de los puntos de venta en el Data Lake, mediante la ingesta diaria a bronce y el modelo de plata, con el fin de dejar de armar el reporte a mano.",
+        "certainty": "inferred",
+        "expected_result": "Ventas diarias disponibles y modeladas en plata.",
+        "business_need": "Finanzas arma el reporte de ventas manualmente.",
+        "deliverables": [
+          "Ingesta diaria a bronce",
+          "Modelo de plata de ventas"
+        ],
+        "owners": [
+          "Jorge",
+          "Sofía"
+        ],
+        "participants": [
+          "Brian",
+          "Jorge",
+          "Sofía"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Ingesta diaria a bronce",
+          "purpose": "Tener los datos crudos disponibles",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "DLV-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-4 d",
+            "basis": "Reutiliza el conector de inventario.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Modelo de plata",
+          "purpose": "Estructurar ventas por tienda, producto y fecha",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T2"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "3-5 d",
+            "basis": "Requiere revisión conjunta con la ingesta.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    },
+    {
+      "id": "facturacion-electronica",
+      "key": "FEL",
+      "name": "Facturación Electrónica",
+      "aliases": [
+        "facturación",
+        "FE"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Mantener la emisión de facturas electrónicas válida, mediante la renovación del certificado de firma y la adecuación al XML 4.4, con el fin de evitar rechazos del SAT.",
+        "certainty": "inferred",
+        "expected_result": "Facturas firmadas con certificado vigente y conformes a la versión 4.4.",
+        "business_need": "El certificado vence el 30 y el SAT publicó la versión 4.4.",
+        "deliverables": [
+          "Certificado renovado en producción",
+          "Generador XML 4.4"
+        ],
+        "owners": [
+          "Carlos",
+          "Ana"
+        ],
+        "participants": [
+          "Brian",
+          "Carlos",
+          "Ana"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Renovar certificado",
+          "purpose": "Evitar la interrupción de la firma",
+          "kind": "agreed",
+          "owner": "Carlos",
+          "task_refs": [
+            "FEL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-3 d",
+            "basis": "Depende del acceso que otorgue infraestructura.",
+            "confidence": "medium"
+          },
+          "risks": [
+            "Acceso al almacén de certificados"
+          ]
+        },
+        {
+          "order": 2,
+          "step": "Adecuar el XML a 4.4",
+          "purpose": "Cumplir la nueva versión del SAT",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "FEL-T2"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 semanas",
+            "basis": "Primero se revisa el anexo técnico; alcance aún incierto.",
+            "confidence": "low"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T1",
+      "project_id": "datalake-ventas",
+      "title": "Implementar ingesta diaria de ventas de puntos de venta a bronce",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Finanzas arma el reporte de ventas a mano. Se requiere una ingesta diaria de las ventas de los puntos de venta hacia la capa bronce del Data Lake de Ventas, reutilizando el conector que ya existe para inventario.",
+      "acceptance_criterion": "Las ventas del día anterior de todos los puntos de venta quedan cargadas en bronce cada día sin intervención manual.",
+      "effort": {
+        "range": "2-3 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Reutiliza un conector existente; falta validar volumen."
+      },
+      "evidence": [
+        {
+          "quote": "Jorge, necesito la ingesta diaria de las ventas de los puntos de venta hacia la capa bronce",
+          "speaker": "Brian",
+          "timestamp": "00:20"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Diseñar modelo de la capa plata de ventas por tienda, producto y fecha",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "Para que Finanzas consuma ventas confiables se necesita el modelo de la capa plata con las dimensiones tienda, producto y fecha. Sofía lo diseña y lo revisa con Jorge para que sea coherente con la ingesta a bronce.",
+      "acceptance_criterion": "El modelo de plata con tienda, producto y fecha está documentado y aprobado por Jorge como compatible con la ingesta.",
+      "effort": {
+        "range": "2-4 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Diseño con revisión cruzada."
+      },
+      "evidence": [
+        {
+          "quote": "Sofía, tú diseñas el modelo de la capa plata para ventas",
+          "speaker": "Brian",
+          "timestamp": "01:10"
+        }
+      ],
+      "depends_on": [
+        "DLV-T1"
+      ]
+    },
+    {
+      "id": "FEL-T1",
+      "project_id": "facturacion-electronica",
+      "title": "Renovar e instalar el certificado de firma en producción",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "El certificado de firma de facturación electrónica está por vencer (Brian indicó el 30; Carlos vio el 15 en el portal del SAT, pendiente de confirmar). Brian pidió renovarlo de inmediato. Carlos debe renovarlo e instalarlo en producción; para ello necesita que infraestructura le otorgue acceso al almacén de certificados.",
+      "acceptance_criterion": "Producción firma facturas con el certificado renovado antes de su fecha de vencimiento confirmada.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Trámite conocido, sujeto al acceso de infraestructura."
+      },
+      "evidence": [
+        {
+          "quote": "Carlos, renuévalo e instálalo en producción",
+          "speaker": "Brian",
+          "timestamp": "02:00"
+        }
+      ]
+    },
+    {
+      "id": "FEL-T2",
+      "project_id": "facturacion-electronica",
+      "title": "Adecuar el generador de XML a la versión 4.4 del SAT",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "El SAT publicó la versión 4.4 del XML de facturación. Ana ajusta el generador de XML para cumplirla, empezando por revisar el anexo técnico para dimensionar los cambios.",
+      "acceptance_criterion": "Las facturas generadas validan contra el esquema 4.4 publicado por el SAT.",
+      "effort": {
+        "range": "3-5 d",
+        "level": "high",
+        "confidence": "low",
+        "rationale": "El alcance depende del anexo técnico, aún no revisado."
+      },
+      "evidence": [
+        {
+          "quote": "Ana, el SAT publicó la versión 4.4 del XML. Ajusta el generador",
+          "speaker": "Brian",
+          "timestamp": "02:40"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "facturacion-electronica",
+      "kind": "external_action",
+      "text": "Infraestructura debe otorgar acceso al almacén de certificados.",
+      "decided_by": null,
+      "executed_by": "Infraestructura",
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "context": "Sin acceso no se puede renovar antes del vencimiento.",
+      "evidence": [
+        {
+          "quote": "Necesito que infraestructura me dé acceso al almacén de certificados.",
+          "speaker": "Carlos",
+          "timestamp": "02:25"
+        }
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "C1",
+      "text": "Fecha de vencimiento del certificado: Brian dijo el 30 y Carlos vio el 15 en el portal del SAT.",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "blocking": false,
+      "statements": [
+        {
+          "quote": "El certificado de firma vence el 30.",
+          "speaker": "Brian",
+          "timestamp": "02:00"
+        },
+        {
+          "quote": "en el portal del SAT aparece que el certificado vence el 15, no el 30",
+          "speaker": "Carlos",
+          "timestamp": "03:20"
+        }
+      ],
+      "resolution": null
+    }
+  ],
+  "open_questions": [],
+  "reconciliation_log": []
+}

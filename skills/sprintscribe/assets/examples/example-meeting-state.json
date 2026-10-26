@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-09-refinamiento-portal",
+    "date": "2026-10-09",
+    "type": "refinement",
+    "sprint": null,
+    "title": "Refinamiento Portal de Clientes",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "María",
+        "role": "QA",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "portal-clientes",
+      "key": "PCL",
+      "name": "Portal de Clientes",
+      "aliases": [
+        "el portal"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr un acceso confiable al Portal de Clientes, mediante la recuperación de contraseña, la auditoría de inicios de sesión y la prevención de cuentas duplicadas, con el fin de que cada cliente tenga una sola cuenta segura con sus pedidos.",
+        "certainty": "inferred",
+        "expected_result": "Clientes recuperan su contraseña, los accesos quedan auditados y no se crean cuentas duplicadas por mayúsculas.",
+        "business_need": "Hay clientes con pedidos repartidos entre dos cuentas y se requiere seguridad en el acceso.",
+        "deliverables": [
+          "Recuperación de contraseña por correo",
+          "Auditoría de inicios de sesión",
+          "Prevención de cuentas duplicadas"
+        ],
+        "owners": [
+          "Ana",
+          "Carlos"
+        ],
+        "participants": [
+          "Brian",
+          "Ana",
+          "Carlos",
+          "María"
+        ],
+        "scope": [],
+        "exclusions": [
+          "Migración del formulario de registro a la nueva librería (pospuesta)"
+        ]
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Prevenir cuentas duplicadas",
+          "purpose": "Detener el problema reportado por soporte",
+          "kind": "agreed",
+          "owner": "Carlos",
+          "task_refs": [
+            "PCL-T4"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-4 d",
+            "basis": "Incluye normalizar el correo y revisar las cuentas existentes.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Recuperación de contraseña",
+          "purpose": "Permitir al cliente recuperar el acceso",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "PCL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Flujo estándar con envío de correo.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 3,
+          "step": "Auditoría de inicios de sesión",
+          "purpose": "Registrar accesos para seguridad",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "PCL-T3"
+          ],
+          "depends_on": [
+            2
+          ],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Ana la hará después de la recuperación de contraseña.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 4,
+          "step": "Plan de fusión de cuentas ya duplicadas",
+          "purpose": "Definir qué hacer con las cuentas existentes",
+          "kind": "recommended",
+          "owner": "Carlos",
+          "task_refs": [],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Recomendación: Carlos mencionó revisar las duplicadas, pero no se acordó cómo fusionarlas.",
+            "confidence": "low"
+          },
+          "risks": [
+            "Requiere decisión del PO sobre la fusión"
+          ]
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PCL-T1",
+      "project_id": "portal-clientes",
+      "title": "Implementar recuperación de contraseña por correo",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Los clientes del Portal de Clientes necesitan recuperar el acceso cuando olvidan su contraseña. Se implementa el flujo de recuperación mediante un enlace enviado al correo registrado. Ana la desarrolla antes de la auditoría de inicios de sesión.",
+      "acceptance_criterion": "Un cliente que solicita recuperar su contraseña recibe un enlace por correo y con él define una nueva contraseña que le permite iniciar sesión.",
+      "effort": {
+        "range": "2-3 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Flujo estándar con envío de correo y expiración de enlace."
+      },
+      "evidence": [
+        {
+          "quote": "que Ana desarrolle la recuperación de contraseña por correo",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        }
+      ]
+    },
+    {
+      "id": "PCL-T2",
+      "project_id": "portal-clientes",
+      "title": "Migrar el formulario de registro a la nueva librería de componentes",
+      "status": "cancelled",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "Migración del formulario de registro a la nueva librería de componentes. Se canceló en la misma reunión para priorizar el problema de cuentas duplicadas.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "que Carlos migre el formulario de registro a la nueva librería de componentes",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        },
+        {
+          "quote": "la migración del formulario de registro ya no la vamos a hacer",
+          "speaker": "Brian",
+          "timestamp": "12:05"
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "superseded_by": "PCL-T4"
+      },
+      "history": [
+        {
+          "change": "confirmed -> cancelled",
+          "reason": "Sustituida por PCL-T4 (cuentas duplicadas)"
+        }
+      ]
+    },
+    {
+      "id": "PCL-T3",
+      "project_id": "portal-clientes",
+      "title": "Registrar auditoría de inicios de sesión del portal",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Por seguridad, cada inicio de sesión en el Portal de Clientes debe quedar registrado para auditoría. Ana la desarrolla después de la recuperación de contraseña, según lo que ella misma indicó.",
+      "acceptance_criterion": "Cada inicio de sesión, exitoso o fallido, queda registrado con cliente, fecha, hora y resultado, y puede consultarse para auditoría.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Registro de eventos sobre un flujo existente."
+      },
+      "evidence": [
+        {
+          "quote": "que Ana también se encargue de la auditoría de inicios de sesión",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        }
+      ],
+      "depends_on": [
+        "PCL-T1"
+      ]
+    },
+    {
+      "id": "PCL-T4",
+      "project_id": "portal-clientes",
+      "title": "Evitar cuentas duplicadas normalizando el correo en el registro",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "inferred",
+      "description": "Soporte reportó clientes con dos cuentas porque se registraron con el mismo correo escrito con mayúsculas y minúsculas, lo que reparte sus pedidos entre cuentas. Se normaliza el correo al registrarse para impedir nuevas duplicadas y se identifican las cuentas que ya están duplicadas. Sustituye a la migración del formulario de registro (PCL-T2).",
+      "acceptance_criterion": "Registrar un correo que ya existe con distinta combinación de mayúsculas es rechazado y existe un listado de las cuentas ya duplicadas por esta causa.",
+      "effort": {
+        "range": "2-3 d",
+        "level": "medium",
+        "confidence": "low",
+        "rationale": "Normalizar es acotado; identificar las duplicadas depende de la calidad de los datos actuales."
+      },
+      "evidence": [
+        {
+          "quote": "En su lugar necesitamos una tarea para resolver el problema de las cuentas duplicadas",
+          "speaker": "Brian",
+          "timestamp": "12:05"
+        },
+        {
+          "quote": "Normalizo el correo al registrarse y reviso cómo detectar las cuentas que ya están duplicadas",
+          "speaker": "Carlos",
+          "timestamp": "12:30"
+        }
+      ],
+      "relations": {
+        "supersedes": [
+          "PCL-T2"
+        ],
+        "superseded_by": null
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "portal-clientes",
+      "kind": "change",
+      "text": "Se cancela la migración del formulario de registro y se sustituye por la prevención de cuentas duplicadas.",
+      "decided_by": "Brian",
+      "executed_by": "Carlos",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T2",
+        "PCL-T4"
+      ],
+      "context": "Las cuentas duplicadas reparten los pedidos de los clientes.",
+      "evidence": [
+        {
+          "quote": "la migración del formulario de registro ya no la vamos a hacer",
+          "speaker": "Brian",
+          "timestamp": "12:05"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "project_id": "portal-clientes",
+      "kind": "decision",
+      "text": "La migración del formulario se retomará cuando haya espacio.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T2"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "la migración la retomamos cuando haya espacio",
+          "speaker": "Brian",
+          "timestamp": "12:50"
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "project_id": "portal-clientes",
+      "kind": "po_validation",
+      "text": "Definir qué hacer con las cuentas ya duplicadas (fusionar o no).",
+      "decided_by": null,
+      "executed_by": null,
+      "status": "pending",
+      "certainty": "inferred",
+      "task_refs": [
+        "PCL-T4"
+      ],
+      "context": "Carlos identificará las duplicadas, pero no se acordó el tratamiento.",
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": [
+    {
+      "id": "R1",
+      "action": "superseded",
+      "task_ref": "PCL-T2",
+      "from": "confirmed",
+      "to": "cancelled",
+      "reason": "Brian canceló la migración para priorizar las cuentas duplicadas.",
+      "cause_decision": "D1",
+      "evidence": [
+        {
+          "quote": "la migración del formulario de registro ya no la vamos a hacer",
+          "speaker": "Brian",
+          "timestamp": "12:05"
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "action": "added",
+      "task_ref": "PCL-T4",
+      "from": null,
+      "to": "confirmed",
+      "reason": "Nueva tarea que sustituye a PCL-T2 para resolver las cuentas duplicadas.",
+      "cause_decision": "D1"
+    }
+  ]
+}

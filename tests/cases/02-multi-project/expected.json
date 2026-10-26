@@ -1,0 +1,48 @@
+{
+  "description": "Dos proyectos separados con responsables distintos.",
+  "projects": [
+    "datalake-ventas",
+    "facturacion-electronica"
+  ],
+  "tasks": [
+    {
+      "match": [
+        "ingesta"
+      ],
+      "project": "datalake-ventas",
+      "owner": "Jorge"
+    },
+    {
+      "match": [
+        "modelo",
+        "plata"
+      ],
+      "project": "datalake-ventas",
+      "owner": "Sofía"
+    },
+    {
+      "match": [
+        "certificado"
+      ],
+      "project": "facturacion-electronica",
+      "owner": "Carlos"
+    },
+    {
+      "match": [
+        "xml",
+        "4 4"
+      ],
+      "project": "facturacion-electronica",
+      "owner": "Ana"
+    }
+  ],
+  "decisions": [
+    {
+      "kind": "external_action",
+      "match": [
+        "infraestructura"
+      ]
+    }
+  ],
+  "contradictions_min": 1
+}

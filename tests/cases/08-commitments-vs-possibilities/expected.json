@@ -1,0 +1,41 @@
+{
+  "description": "Solo el compromiso se convierte en tarea lista; las posibilidades no.",
+  "ready_count": {
+    "min": 1,
+    "max": 1
+  },
+  "tasks": [
+    {
+      "match": [
+        "certificado"
+      ],
+      "owner": "Carlos",
+      "status_in": [
+        "confirmed"
+      ]
+    }
+  ],
+  "forbidden": [
+    {
+      "match": [
+        "whatsapp"
+      ],
+      "status_in": [
+        "confirmed",
+        "modified",
+        "blocked"
+      ]
+    },
+    {
+      "match": [
+        "api",
+        "proveedor"
+      ],
+      "status_in": [
+        "confirmed",
+        "modified",
+        "blocked"
+      ]
+    }
+  ]
+}

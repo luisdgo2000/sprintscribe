@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-08-refinamiento-lake",
+    "date": "2026-10-08",
+    "type": "refinement",
+    "sprint": null,
+    "title": "Refinamiento Data Lake de Ventas",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Jorge",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que Operaciones disponga de las ventas casi en tiempo real en el Data Lake, mediante una ingesta incremental por hora con controles de calidad, con el fin de reponer inventario a tiempo.",
+        "certainty": "inferred",
+        "expected_result": "Ventas cargadas cada hora en bronce con controles de nulos y duplicados.",
+        "business_need": "Operaciones necesita el dato durante el día para reponer inventario.",
+        "deliverables": [
+          "Ingesta incremental por hora",
+          "Pruebas de calidad de la carga"
+        ],
+        "owners": [
+          "Jorge",
+          "Sofía"
+        ],
+        "participants": [
+          "Brian",
+          "Jorge",
+          "Sofía"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Ingesta incremental por hora",
+          "purpose": "Disponer del dato intradía",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "DLV-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "3-5 d",
+            "basis": "Pasar de carga diaria a incremental agrega complejidad.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Pruebas de calidad",
+          "purpose": "Detectar nulos y duplicados en cada carga",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T2"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Se ajustan a la frecuencia horaria.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T1",
+      "project_id": "datalake-ventas",
+      "title": "Implementar ingesta incremental de ventas a bronce cada hora",
+      "status": "modified",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Operaciones necesita ver las ventas durante el día para reponer inventario. La ingesta de ventas a bronce debe ejecutarse cada hora con carga incremental. Inicialmente se pidió una ejecución nocturna diaria, pero Brian la cambió más adelante en la misma reunión.",
+      "acceptance_criterion": "Cada hora se cargan en bronce las ventas nuevas desde la ejecución anterior, sin duplicar registros ya cargados.",
+      "effort": {
+        "range": "3-4 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "La carga incremental agrega control de marcas de agua respecto de la carga diaria."
+      },
+      "evidence": [
+        {
+          "quote": "la ingesta de ventas a bronce que sea diaria, de madrugada",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        },
+        {
+          "quote": "la ingesta mejor que corra cada hora, no una vez al día",
+          "speaker": "Brian",
+          "timestamp": "05:25"
+        }
+      ],
+      "history": [
+        {
+          "change": "Frecuencia: diaria nocturna -> cada hora",
+          "reason": "Operaciones necesita el dato casi en tiempo real"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Crear pruebas de calidad de nulos y duplicados para la ingesta de ventas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "Cada carga de ventas en bronce debe verificarse contra nulos en campos clave y registros duplicados. Al pasar la ingesta a frecuencia horaria, las pruebas deben ejecutarse en cada carga incremental.",
+      "acceptance_criterion": "Cada ejecución de la ingesta registra el resultado de las pruebas de nulos y duplicados y falla visiblemente si alguna no se cumple.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Pruebas estándar sobre una tabla."
+      },
+      "evidence": [
+        {
+          "quote": "Sofía, tú preparas las pruebas de calidad para esa carga: nulos y duplicados.",
+          "speaker": "Brian",
+          "timestamp": "00:30"
+        }
+      ],
+      "depends_on": [
+        "DLV-T1"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "datalake-ventas",
+      "kind": "change",
+      "text": "La ingesta de ventas pasa de diaria a cada hora.",
+      "decided_by": "Brian",
+      "executed_by": "Jorge",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "DLV-T1"
+      ],
+      "context": "Operaciones repone inventario con el dato intradía.",
+      "evidence": [
+        {
+          "quote": "cambiemos lo que habíamos dicho",
+          "speaker": "Brian",
+          "timestamp": "05:25"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": [
+    {
+      "id": "R1",
+      "action": "modified",
+      "task_ref": "DLV-T1",
+      "from": "diaria a las 2 a.m.",
+      "to": "cada hora, incremental",
+      "reason": "Brian cambió la frecuencia porque Operaciones necesita el dato casi en tiempo real.",
+      "cause_decision": "D1",
+      "evidence": [
+        {
+          "quote": "cambiemos lo que habíamos dicho: la ingesta mejor que corra cada hora",
+          "speaker": "Brian",
+          "timestamp": "05:25"
+        }
+      ]
+    }
+  ]
+}

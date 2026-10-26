@@ -1,0 +1,17 @@
+{
+  "description": "Tarea confirmada sin responsable: no se inventa owner.",
+  "tasks": [
+    {
+      "match": [
+        "documentacion",
+        "api"
+      ],
+      "owner": null,
+      "status_in": [
+        "confirmed"
+      ]
+    }
+  ],
+  "forbidden": [],
+  "open_questions_min": 1
+}

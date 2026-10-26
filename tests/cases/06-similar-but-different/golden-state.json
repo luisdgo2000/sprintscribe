@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-13-refinamiento-lake",
+    "date": "2026-10-13",
+    "type": "refinement",
+    "sprint": null,
+    "title": "Refinamiento Data Lake de Ventas",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Sofía",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Jorge",
+        "role": "Ingeniería de datos",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "datalake-ventas",
+      "key": "DLV",
+      "name": "Data Lake de Ventas",
+      "aliases": [
+        "el lake de ventas",
+        "el lago de ventas"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que el reporte de ventas sea confiable para el área comercial, mediante reglas de calidad en plata y la validación de totales con negocio, con el fin de que se use para decisiones.",
+        "certainty": "inferred",
+        "expected_result": "Datos de ventas sin montos negativos ni tiendas inexistentes y totales aprobados por el gerente comercial.",
+        "business_need": "Negocio debe confiar en los totales del reporte.",
+        "deliverables": [
+          "Reglas de calidad en plata",
+          "Validación de totales con el gerente comercial"
+        ],
+        "owners": [
+          "Sofía",
+          "Jorge"
+        ],
+        "participants": [
+          "Brian",
+          "Sofía",
+          "Jorge"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Reglas de calidad en plata",
+          "purpose": "Evitar datos inválidos en el reporte",
+          "kind": "agreed",
+          "owner": "Sofía",
+          "task_refs": [
+            "DLV-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Reglas simples sobre columnas conocidas.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Validación con negocio",
+          "purpose": "Obtener la aprobación de los totales",
+          "kind": "agreed",
+          "owner": "Jorge",
+          "task_refs": [
+            "DLV-T2"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "3-5 d",
+            "basis": "Depende de la agenda del gerente comercial.",
+            "confidence": "medium"
+          },
+          "risks": [
+            "Disponibilidad del gerente comercial"
+          ]
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DLV-T1",
+      "project_id": "datalake-ventas",
+      "title": "Agregar reglas de calidad de montos y tiendas en la capa plata de ventas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Sofía",
+      "owner_certainty": "explicit",
+      "description": "El pipeline de ventas no debe aceptar registros con montos negativos ni con tiendas inexistentes. Sofía agrega estas reglas de calidad en la capa plata. Es distinta de la validación del reporte con negocio (DLV-T2).",
+      "acceptance_criterion": "La capa plata rechaza o marca todo registro con monto negativo o con una tienda que no existe en el catálogo de tiendas.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Reglas declarativas sobre columnas existentes."
+      },
+      "evidence": [
+        {
+          "quote": "hay que validar la calidad de los datos de ventas en el pipeline",
+          "speaker": "Brian",
+          "timestamp": "00:00"
+        }
+      ]
+    },
+    {
+      "id": "DLV-T2",
+      "project_id": "datalake-ventas",
+      "title": "Conciliar con el gerente comercial los totales del reporte de ventas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Jorge",
+      "owner_certainty": "explicit",
+      "description": "Negocio necesita confiar en el reporte de ventas. Jorge agenda una sesión con el gerente comercial para que confirme que los totales del reporte coinciden con lo que ve en caja. Es una validación funcional distinta de las reglas técnicas de calidad (DLV-T1).",
+      "acceptance_criterion": "El gerente comercial confirma por escrito que los totales del reporte coinciden con los de caja para el período revisado.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "low",
+        "rationale": "Esfuerzo bajo, pero depende de la agenda de negocio."
+      },
+      "evidence": [
+        {
+          "quote": "también hay que validar el reporte de ventas, pero con negocio",
+          "speaker": "Brian",
+          "timestamp": "02:00"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "datalake-ventas",
+      "kind": "external_action",
+      "text": "El gerente comercial debe revisar y confirmar los totales.",
+      "decided_by": null,
+      "executed_by": "Gerente comercial",
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "DLV-T2"
+      ],
+      "context": null,
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": []
+}

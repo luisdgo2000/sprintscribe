@@ -1,0 +1,51 @@
+{
+  "description": "No se duplican tareas existentes y no se toca un work item por coincidencia ambigua.",
+  "ops": [
+    {
+      "op": "noop",
+      "work_item_id": 4512
+    },
+    {
+      "op": "update",
+      "work_item_id": 4530,
+      "status": "needs_review",
+      "task_match": [
+        "captcha"
+      ]
+    },
+    {
+      "op": "needs_review",
+      "task_match": [
+        "migrar"
+      ]
+    },
+    {
+      "op": "create",
+      "task_match": [
+        "metricas"
+      ]
+    }
+  ],
+  "forbid_ops": [
+    {
+      "op": "create",
+      "task_match": [
+        "captcha"
+      ]
+    },
+    {
+      "op": "create",
+      "task_match": [
+        "recuperacion",
+        "correo"
+      ]
+    },
+    {
+      "op": "change_state",
+      "task_match": [
+        "migrar"
+      ]
+    }
+  ],
+  "no_applied_ops": true
+}

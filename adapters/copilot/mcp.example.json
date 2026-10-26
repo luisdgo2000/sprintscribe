@@ -1,0 +1,33 @@
+// Ejemplo para .vscode/mcp.json (VS Code acepta comentarios en este archivo).
+//
+// Azure DevOps MCP Server oficial (microsoft/azure-devops-mcp), servidor remoto
+// con Microsoft Entra ID: no usa PAT y no guarda credenciales en el repositorio.
+//
+// Arranca en SOLO LECTURA: SprintScribe solo necesita leer para deduplicar y
+// localizar work items. Quita X-MCP-Readonly unicamente si el equipo autoriza
+// Sync por MCP (boards.mode = "sync" y boards.channel = "mcp").
+//
+// Requisitos de terceros:
+//   - La politica "MCP servers in Copilot" habilitada por la organizacion
+//     (deshabilitada por defecto en Copilot Business y Enterprise).
+//   - La organizacion de Azure DevOps respaldada por un tenant de Entra.
+// Alternativa local (Node 20+):  npx -y @azure-devops/mcp <org> -d core work work-items search
+{
+  "inputs": [
+    {
+      "id": "ado_org",
+      "type": "promptString",
+      "description": "Organizacion de Azure DevOps (solo el nombre)"
+    }
+  ],
+  "servers": {
+    "azure-devops": {
+      "type": "http",
+      "url": "https://mcp.dev.azure.com/${input:ado_org}",
+      "headers": {
+        "X-MCP-Tools": "core_list_projects, wit_work_item, search_workitem, wit_query, work, wit_work_item_write, wit_work_item_link_write",
+        "X-MCP-Readonly": "true"
+      }
+    }
+  }
+}

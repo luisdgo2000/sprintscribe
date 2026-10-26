@@ -1,0 +1,38 @@
+{
+  "source": "fixture (equivalente a una consulta wit_work_item / search_workitem)",
+  "fetched_at": "2026-10-16T09:00:00Z",
+  "work_items": [
+    {
+      "id": 4512,
+      "type": "Task",
+      "title": "Implementar recuperación de contraseña por correo",
+      "state": "Active",
+      "assigned_to": "Ana <ana@empresa.com>",
+      "project_id": "portal-clientes"
+    },
+    {
+      "id": 4513,
+      "type": "Task",
+      "title": "Migrar formulario de registro a la nueva librería de componentes",
+      "state": "New",
+      "assigned_to": "Carlos <carlos@empresa.com>",
+      "project_id": "portal-clientes"
+    },
+    {
+      "id": 4530,
+      "type": "Task",
+      "title": "Agregar captcha al formulario de inicio de sesión",
+      "state": "New",
+      "assigned_to": null,
+      "project_id": "portal-clientes"
+    },
+    {
+      "id": 4601,
+      "type": "Task",
+      "title": "Configurar alertas de disponibilidad del portal",
+      "state": "Active",
+      "assigned_to": "Jorge",
+      "project_id": "portal-clientes"
+    }
+  ]
+}

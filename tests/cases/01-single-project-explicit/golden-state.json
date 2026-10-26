@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-06-refinamiento-portal",
+    "date": "2026-10-06",
+    "type": "refinement",
+    "sprint": null,
+    "title": "Refinamiento Portal de Clientes",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "María",
+        "role": "QA",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "portal-clientes",
+      "key": "PCL",
+      "name": "Portal de Clientes",
+      "aliases": [
+        "el portal"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Lograr que los clientes descarguen sus facturas en PDF desde el Portal de Clientes, mediante un endpoint de descarga y un botón en el historial, con el fin de eliminar las solicitudes manuales a soporte.",
+        "certainty": "inferred",
+        "expected_result": "Clientes descargan facturas en PDF sin pedirlas por correo.",
+        "business_need": "Soporte atiende unas cuarenta solicitudes semanales de facturas por correo.",
+        "deliverables": [
+          "Endpoint de descarga de facturas en PDF",
+          "Botón de descarga en el historial",
+          "Validación en QA"
+        ],
+        "owners": [
+          "Ana",
+          "Carlos",
+          "María"
+        ],
+        "participants": [
+          "Brian",
+          "Ana",
+          "Carlos",
+          "María"
+        ],
+        "scope": [
+          "Descarga individual de facturas desde el historial"
+        ],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Endpoint de descarga en PDF",
+          "purpose": "Disponer del contrato que consume el frontend",
+          "kind": "agreed",
+          "owner": "Ana",
+          "task_refs": [
+            "PCL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "2-3 d",
+            "basis": "Ana estimó un par de días; se suma la entrega del contrato.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Botón en el historial",
+          "purpose": "Exponer la descarga al cliente",
+          "kind": "agreed",
+          "owner": "Carlos",
+          "task_refs": [
+            "PCL-T2"
+          ],
+          "depends_on": [
+            1
+          ],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Cambio acotado de interfaz que depende del contrato.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 3,
+          "step": "Validación en QA",
+          "purpose": "Confirmar la descarga con facturas de distintos meses",
+          "kind": "agreed",
+          "owner": "María",
+          "task_refs": [
+            "PCL-T3"
+          ],
+          "depends_on": [
+            2
+          ],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Incluye preparar datos de prueba y posibles correcciones.",
+            "confidence": "medium"
+          },
+          "risks": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PCL-T1",
+      "project_id": "portal-clientes",
+      "title": "Exponer endpoint de descarga de facturas en PDF",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Ana",
+      "owner_certainty": "explicit",
+      "description": "Soporte recibe unas cuarenta solicitudes semanales de facturas por correo. Se necesita exponer un endpoint en el Portal de Clientes que devuelva la factura en PDF consumiendo el PDF que ya genera el servicio de facturación, aplicando el mismo control de permisos que usa el historial de facturas. El contrato del endpoint debe compartirse con Carlos, que lo consume desde la pantalla de historial.",
+      "acceptance_criterion": "Un cliente autenticado obtiene el PDF de una factura propia desde el endpoint y recibe un rechazo al pedir una factura de otro cliente.",
+      "effort": {
+        "range": "1-2 d",
+        "level": "medium",
+        "confidence": "medium",
+        "rationale": "Reutiliza el servicio de facturación existente; Ana estimó un par de días."
+      },
+      "evidence": [
+        {
+          "quote": "Ana, necesito que hagas el endpoint que devuelva la factura en PDF",
+          "speaker": "Brian",
+          "timestamp": "00:42"
+        }
+      ]
+    },
+    {
+      "id": "PCL-T2",
+      "project_id": "portal-clientes",
+      "title": "Agregar botón de descarga de PDF en el historial de facturas",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "Los clientes necesitan descargar la factura desde la pantalla de historial del Portal de Clientes. Se agrega un botón de descarga por factura que invoca el endpoint de PCL-T1, respetando el contrato que entregue Ana.",
+      "acceptance_criterion": "Desde el historial de facturas, el botón de cada factura descarga el PDF correcto de esa factura.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Cambio de interfaz acotado; depende del contrato del endpoint."
+      },
+      "evidence": [
+        {
+          "quote": "Carlos, tú agregas el botón de descarga en la pantalla de historial",
+          "speaker": "Brian",
+          "timestamp": "01:25"
+        }
+      ],
+      "depends_on": [
+        "PCL-T1"
+      ]
+    },
+    {
+      "id": "PCL-T3",
+      "project_id": "portal-clientes",
+      "title": "Validar en QA la descarga de facturas con clientes de prueba",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": "Brian",
+      "owner": "María",
+      "owner_certainty": "explicit",
+      "description": "Antes de liberar, se debe probar la descarga integrada en QA con clientes de prueba que tengan facturas de varios meses, incluyendo facturas antiguas y recientes, para confirmar que el PDF corresponde a cada factura.",
+      "acceptance_criterion": "La descarga funciona en QA para facturas antiguas y recientes de al menos dos clientes de prueba sin errores abiertos.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Preparación de casos y ejecución de pruebas sobre una funcionalidad acotada."
+      },
+      "evidence": [
+        {
+          "quote": "María, cuando esté integrado lo pruebas en QA",
+          "speaker": "Brian",
+          "timestamp": "02:05"
+        }
+      ],
+      "depends_on": [
+        "PCL-T2"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "portal-clientes",
+      "kind": "decision",
+      "text": "La descarga de facturas en PDF entra en este sprint.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T1",
+        "PCL-T2",
+        "PCL-T3"
+      ],
+      "context": "Reduce la carga de soporte.",
+      "evidence": [
+        {
+          "quote": "Con eso cerramos el tema de facturas para este sprint.",
+          "speaker": "Brian",
+          "timestamp": "02:40"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "project_id": "portal-clientes",
+      "kind": "dependency",
+      "text": "El botón del historial depende del contrato del endpoint de Ana.",
+      "decided_by": null,
+      "executed_by": "Ana",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "PCL-T2"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "depende del contrato del endpoint, Ana me lo pasas",
+          "speaker": "Carlos",
+          "timestamp": "01:40"
+        }
+      ]
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": []
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "meeting": {
+    "id": "2026-10-14-seguimiento-fe",
+    "date": "2026-10-14",
+    "type": "follow_up",
+    "sprint": null,
+    "title": "Seguimiento Facturación Electrónica",
+    "source": "transcript.md",
+    "participants": [
+      {
+        "name": "Brian",
+        "role": "Product Owner",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Carlos",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      },
+      {
+        "name": "Ana",
+        "role": "Desarrollo",
+        "identity_confidence": "high"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "facturacion-electronica",
+      "key": "FEL",
+      "name": "Facturación Electrónica",
+      "aliases": [
+        "facturación",
+        "FE"
+      ],
+      "status": "confirmed",
+      "resolution_basis": "Nombre explícito en la reunión",
+      "sprint_objective": {
+        "statement": "Mantener la firma de facturas vigente, mediante la renovación del certificado antes del viernes, con el fin de no interrumpir la facturación.",
+        "certainty": "inferred",
+        "expected_result": "Certificado renovado antes del viernes.",
+        "business_need": "Continuidad de la facturación electrónica.",
+        "deliverables": [
+          "Certificado renovado"
+        ],
+        "owners": [
+          "Carlos"
+        ],
+        "participants": [
+          "Brian",
+          "Carlos",
+          "Ana"
+        ],
+        "scope": [],
+        "exclusions": []
+      },
+      "roadmap": [
+        {
+          "order": 1,
+          "step": "Renovar el certificado",
+          "purpose": "Evitar el vencimiento",
+          "kind": "agreed",
+          "owner": "Carlos",
+          "task_refs": [
+            "FEL-T1"
+          ],
+          "depends_on": [],
+          "duration": {
+            "range": "1-2 d",
+            "basis": "Compromiso explícito de Carlos para el viernes.",
+            "confidence": "medium"
+          },
+          "risks": []
+        },
+        {
+          "order": 2,
+          "step": "Cotizar la nueva API del proveedor",
+          "purpose": "Tener costos para decidir la migración",
+          "kind": "recommended",
+          "owner": null,
+          "task_refs": [],
+          "depends_on": [],
+          "duration": {
+            "range": "3-5 d",
+            "basis": "Brian pidió costos antes de decidir; no se asignó a nadie.",
+            "confidence": "low"
+          },
+          "risks": [
+            "Sin responsable"
+          ]
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "FEL-T1",
+      "project_id": "facturacion-electronica",
+      "title": "Renovar el certificado de firma antes del viernes",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "work_item_type": "task",
+      "proposed_by": "Carlos",
+      "decided_by": "Brian",
+      "owner": "Carlos",
+      "owner_certainty": "explicit",
+      "description": "El certificado de firma de facturación electrónica debe renovarse para no interrumpir la emisión de facturas. Carlos se comprometió explícitamente a dejarlo renovado antes del viernes.",
+      "acceptance_criterion": "El certificado renovado está instalado y firmando facturas antes del viernes.",
+      "effort": {
+        "range": "4-8 h",
+        "level": "low",
+        "confidence": "medium",
+        "rationale": "Trámite conocido."
+      },
+      "evidence": [
+        {
+          "quote": "Me comprometo a dejarlo renovado antes del viernes.",
+          "speaker": "Carlos",
+          "timestamp": "00:10"
+        }
+      ]
+    },
+    {
+      "id": "FEL-T2",
+      "project_id": "facturacion-electronica",
+      "title": "Evaluar migración a la nueva API del proveedor de timbrado",
+      "status": "proposed",
+      "certainty": "pending",
+      "work_item_type": "task",
+      "proposed_by": "Brian",
+      "decided_by": null,
+      "owner": null,
+      "owner_certainty": "pending",
+      "description": "Idea exploratoria de Brian: migrar a la nueva API del proveedor de timbrado. Antes de decidir, Brian quiere conocer los costos.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "tal vez podríamos migrar a la nueva API del proveedor de timbrado, habría que ver costos",
+          "speaker": "Brian",
+          "timestamp": "00:30"
+        }
+      ]
+    },
+    {
+      "id": "FEL-T3",
+      "project_id": "facturacion-electronica",
+      "title": "Enviar facturas a los clientes por WhatsApp",
+      "status": "proposed",
+      "certainty": "pending",
+      "work_item_type": "task",
+      "proposed_by": "Ana",
+      "decided_by": null,
+      "owner": null,
+      "owner_certainty": "pending",
+      "description": "Idea planteada por Ana; Brian indicó que se verá otro día.",
+      "acceptance_criterion": null,
+      "evidence": [
+        {
+          "quote": "¿Y si además mandamos la factura por WhatsApp?",
+          "speaker": "Ana",
+          "timestamp": "00:50"
+        },
+        {
+          "quote": "No sé, eso lo vemos otro día.",
+          "speaker": "Brian",
+          "timestamp": "01:00"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "project_id": "facturacion-electronica",
+      "kind": "commitment",
+      "text": "Carlos renueva el certificado antes del viernes.",
+      "decided_by": "Carlos",
+      "executed_by": "Carlos",
+      "status": "confirmed",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T1"
+      ],
+      "context": null,
+      "evidence": [
+        {
+          "quote": "Me comprometo a dejarlo renovado antes del viernes.",
+          "speaker": "Carlos",
+          "timestamp": "00:10"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "project_id": "facturacion-electronica",
+      "kind": "po_validation",
+      "text": "Decidir la migración a la nueva API cuando haya costos.",
+      "decided_by": "Brian",
+      "executed_by": null,
+      "status": "pending",
+      "certainty": "explicit",
+      "task_refs": [
+        "FEL-T2"
+      ],
+      "context": null,
+      "evidence": []
+    }
+  ],
+  "contradictions": [],
+  "open_questions": [],
+  "reconciliation_log": []
+}

@@ -1,0 +1,74 @@
+{
+  "description": "Ejemplo obligatorio: tarea 2 cancelada y sustituida por tarea 4; tareas 1 y 3 se mantienen.",
+  "ready_count": {
+    "min": 3,
+    "max": 3
+  },
+  "tasks": [
+    {
+      "match": [
+        "recuperacion",
+        "contrasena"
+      ],
+      "owner": "Ana",
+      "status_in": [
+        "confirmed"
+      ]
+    },
+    {
+      "match": [
+        "auditoria"
+      ],
+      "owner": "Ana",
+      "status_in": [
+        "confirmed"
+      ]
+    },
+    {
+      "match": [
+        "duplicad"
+      ],
+      "owner": "Carlos",
+      "status_in": [
+        "confirmed"
+      ]
+    },
+    {
+      "match": [
+        "migrar",
+        "formulario"
+      ],
+      "status_in": [
+        "cancelled"
+      ]
+    }
+  ],
+  "forbidden": [
+    {
+      "match": [
+        "migrar",
+        "formulario"
+      ],
+      "status_in": [
+        "confirmed",
+        "modified",
+        "blocked",
+        "proposed"
+      ]
+    }
+  ],
+  "reconciliation": [
+    {
+      "action": "superseded",
+      "task_match": [
+        "migrar"
+      ]
+    },
+    {
+      "action": "added",
+      "task_match": [
+        "duplicad"
+      ]
+    }
+  ]
+}
